@@ -77,6 +77,24 @@ function changeTurn() {
     }
 }
 
+function reload(attacker, defender) {
+    whoseTurn = 1;
+    attacker.health = 100;
+    defender.health = 100;
+    attacker.rage = 0;
+    defender.rage = 0;
+}
+
+function disablingDead(attacker, defender) {
+    if (isDead(attacker) == true) {
+        $('#attack').attr('disabled', true);
+        $('#heal').attr('disabled', true);
+    } else if (isDead(defender) == true) {
+        $('#attack').attr('disabled', true);
+        $('#heal').attr('disabled', true);
+    }
+}
+
 function attatchHandlers() {
     $('#attack').click(function() {
         isDead(combater());
@@ -90,12 +108,17 @@ function attatchHandlers() {
         changeTurn();
         draw();
     });
+    $('#restart').click(function() {
+        reload(combater(), defending());
+        draw();
+    });
 }
 
 function buttonView() {
     return [
         "<div><button id='attack'>Attack</button>",
-        "<button id='heal'>Heal</button></div>"
+        "<button id='heal'>Heal</button></div>",
+        "<div><button id='restart'>Restart</button></div>"
     ].join('');
 }
 function gladiatorView(player) {
