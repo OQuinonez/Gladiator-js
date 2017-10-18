@@ -1,8 +1,9 @@
 {
-    "name": "JS-Template",
+    "name": "Gladiator-Js",
     "version": "1.0.0",
-    "description": "Base Camp Coding Academy template for javascript projects",
-    "author": "Nate Clark",
+    "description":
+        "Gladiator game which can have multiple users play against each other",
+    "author": "Osvaldo Quinonez",
     "license": "MIT",
     "dependencies": {
         "bootstrap": "^3.3.7",
