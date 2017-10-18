@@ -79,11 +79,13 @@ function changeTurn() {
 
 function attatchHandlers() {
     $('#attack').click(function() {
+        isDead(combater());
         attack(combater(), defending());
         changeTurn();
         draw();
     });
     $('#heal').click(function() {
+        isDead(combater());
         heal(combater());
         changeTurn();
         draw();
@@ -115,30 +117,6 @@ function draw() {
     attatchHandlers();
 }
 // ******************************************************************
-
-// function attatchHandlers() {
-//     $('#attack').click(function() {
-//         attack(player1, player2);
-//         draw();
-//     });
-//     $('#heal').click(function() {
-//         heal(player1);
-//         draw();
-//     });
-// }
-
-// function buttonView() {
-//     return [
-//         "<div><button id='attack'>Attack</button>",
-//         "<button id='heal'>Heal</button></div>"
-//     ].join('');
-// }
-
-// function draw() {
-//     appRoot.html(
-//         gladiatorView(player1) + gladiatorView(player2) + buttonView()
-//     );
-//     attatchHandlers();
 
 function main() {
     draw();
