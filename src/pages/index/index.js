@@ -93,6 +93,7 @@ function attatchHandlers() {
         draw();
     });
     $('#heal').click(function() {
+        viewableHealButton(combater());
         isDead(combater());
         heal(combater());
         changeTurn();
@@ -104,10 +105,17 @@ function attatchHandlers() {
     });
 }
 
+function viewableHealButton(player) {
+    if (player.rage >= 10) {
+        return ["<button id='heal'>Heal</button></div>"].join('');
+    }
+}
+
 function buttonView() {
     return [
         "<div><button id='attack'>Attack</button>",
-        "<button id='heal'>Heal</button></div>",
+        viewableHealButton(combater()),
+        '</div>',
         "<div><button id='restart'>Restart</button></div>"
     ].join('');
 }
