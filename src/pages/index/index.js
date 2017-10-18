@@ -85,16 +85,6 @@ function reload(attacker, defender) {
     defender.rage = 0;
 }
 
-function disablingDead(attacker, defender) {
-    if (isDead(attacker) == true) {
-        $('#attack').attr('disabled', true);
-        $('#heal').attr('disabled', true);
-    } else if (isDead(defender) == true) {
-        $('#attack').attr('disabled', true);
-        $('#heal').attr('disabled', true);
-    }
-}
-
 function attatchHandlers() {
     $('#attack').click(function() {
         isDead(combater());
