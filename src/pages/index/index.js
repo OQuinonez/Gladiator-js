@@ -52,7 +52,11 @@ function heal(attacker) {
 }
 
 function ragingUp(attacker) {
-    attacker.rage += 15;
+    if (attacker.rage > 100) {
+        attacker.rage = 100;
+    } else {
+        attacker.rage += 15;
+    }
 }
 
 function isDead(attacker) {
@@ -111,6 +115,11 @@ function attatchHandlers() {
         reload(combater(), defending());
         draw();
     });
+    $('#rage').click(function() {
+        ragingUp(combater());
+        changeTurn();
+        draw();
+    });
 }
 
 // function viewableHealButton(player) {
@@ -129,6 +138,7 @@ function viewableButtons(player) {
     }
     if (player.health > 0) {
         able.push("<button id='attack'>Attack</button>");
+        able.push("<button id='rage'>Increase Rage</button> ");
     }
     return able.join('');
 }
