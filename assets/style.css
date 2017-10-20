@@ -1,0 +1,23 @@
+body {
+    background-image: url(other.jpg);
+    background-size: cover;
+    background-repeat: fixed;
+}
+
+h1,
+h2 {
+    color: #ec4b36;
+}
+
+.damage {
+    color: #ec4b36;
+    font-size: 2em;
+}
+
+.btn {
+    padding: 12px;
+    margin: 8px;
+    background-color: #ffe0dc;
+    color: black;
+    font-size: 1.25em;
+}
