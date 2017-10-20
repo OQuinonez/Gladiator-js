@@ -12,8 +12,8 @@ function Gladiator(name, health, rage, damageLow, damageHigh) {
     this.damageHigh = damageHigh;
 }
 
-const player1 = new Gladiator('Ryu', 100, 0, 12, 24);
-const player2 = new Gladiator('Ken', 100, 0, 9, 27);
+const player1 = new Gladiator('Ryu', 100, 0, 3, 21);
+const player2 = new Gladiator('Ken', 100, 0, 5, 16);
 STATE = {
     whoseTurn: 1,
     points: ''
@@ -35,6 +35,7 @@ function attack(attacker, defender) {
     }
     if (defender.health <= 0) {
         defender.health = 0;
+        STATE.points = attacker.name + ' Wins!';
     }
 }
 
@@ -54,7 +55,7 @@ function heal(attacker) {
 }
 // Another move more powerful than a regular attack
 function haduken(attacker, defender) {
-    const hdkn = Math.floor(Math.random() * 60) + 40;
+    const hdkn = Math.floor(Math.random() * 40) + 25;
     if (attacker.rage >= 40) {
         defender.health -= hdkn;
         attacker.rage = 0;
@@ -62,6 +63,7 @@ function haduken(attacker, defender) {
     }
     if (defender.health <= 0) {
         defender.health = 0;
+        STATE.points = attacker.name + ' Wins!';
     }
 }
 //Skips turn and add 20 rage to the user
@@ -107,13 +109,16 @@ function changeTurn() {
     }
 }
 // Starts both players like new with both at 100 health and 0 rage
-function reload(attacker, defender) {
-    STATE.points = '';
-    STATE.whoseTurn = 1;
-    attacker.health = 100;
-    defender.health = 100;
-    attacker.rage = 0;
-    defender.rage = 0;
+function reload(player, other) {
+    able = [];
+    if (player.health < 0 || other.health < 0) {
+        able.push(
+            "<button id='restart' class='btn btn-moves' onclick='document.location.reload()'>Restart</button>"
+        );
+    } else {
+        return able;
+    }
+    able.join('');
 }
 
 // Makes the buttons do what they are suppose to do
@@ -146,20 +151,25 @@ function attatchHandlers() {
 
 // Makes the buttons viewable under certain
 // circumstances for the user
-function viewableButtons(player) {
+function viewableButtons(player, other) {
     able = [];
-    if (isDead(player) == true) {
-        able.push('');
+    if (player.health > 0) {
+        able.push(
+            "<button type='button' class='btn btn-moves' id='attack'>Attack</button>"
+        );
+        able.push(
+            "<button type='button' class='btn btn-moves' id='rage'>Increase Rage</button> "
+        );
     }
     if (player.rage >= 10 && player.health > 0) {
-        able.push("<button id='heal'>Heal</button>");
+        able.push(
+            "<button type='button' class='btn btn-moves' id='heal'>Heal</button>"
+        );
     }
     if (player.rage > 40 && player.health > 0) {
-        able.push("<button id='hadukening'>Haduken</button>");
-    }
-    if (player.health > 0) {
-        able.push("<button id='attack'>Attack</button>");
-        able.push("<button id='rage'>Increase Rage</button> ");
+        able.push(
+            "<button type='button' class='btn btn-moves' id='hadukening'>Haduken</button>"
+        );
     }
     return able.join('');
 }
@@ -168,24 +178,26 @@ function viewableButtons(player) {
 // button is usable
 function buttonView() {
     return [
+        '<div class="damage">',
         STATE.points,
-        '<div>',
-        viewableButtons(combater()),
         '</div>',
-        "<div><button id='restart'>Restart</button></div>"
+        '<div class="btns">',
+        viewableButtons(combater()),
+        '</div>'
+        // "<div><button type='button' class='btn btn-moves' id='restart'>Restart</button></div>"
     ].join('');
 }
 // Displays the health, name, and rage
 // of the Gladiators to the user
 function gladiatorView(player) {
     return [
-        '<div><h2>Name: ',
+        '<div class="info"><h2>Name: ',
         player.name,
-        '</h2></div>',
-        '<div><h2>Player Health: ',
+        '</h2><br />',
+        '<h2>Player Health: ',
         player.health,
-        '</h2></div>',
-        '<div><h2>Player Rage: ',
+        '</h2><br />',
+        '<h2>Player Rage: ',
         player.rage,
         '</h2></div>',
         '<hr />'
