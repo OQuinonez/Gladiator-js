@@ -190,8 +190,10 @@ function buttonView() {
         '<div class="damage">',
         STATE.points,
         '</div>',
+        '<div class="col-lg-6">',
         '<div class="btns">',
         viewableButtons(combater()),
+        '</div>',
         '</div>'
         // "<div><button type='button' class='btn btn-moves' id='restart'>Restart</button></div>"
     ].join('');
@@ -200,6 +202,7 @@ function buttonView() {
 // of the Gladiators to the user
 function gladiatorView(player) {
     return [
+        '<div class="col-lg-6">',
         '<div class="info"><h2>Name: ',
         player.name,
         '</h2><br />',
@@ -209,7 +212,8 @@ function gladiatorView(player) {
         '<h2>Player Rage: ',
         player.rage,
         '</h2></div>',
-        '<hr />'
+        '<hr />',
+        '</div>'
     ].join('');
 }
 
