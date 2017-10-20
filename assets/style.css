@@ -12,6 +12,7 @@ h2 {
 .damage {
     color: #ec4b36;
     font-size: 2em;
+    text-align: center;
 }
 
 .btn {
@@ -20,4 +21,9 @@ h2 {
     background-color: #ffe0dc;
     color: black;
     font-size: 1.25em;
+    margin-right: 2px;
+}
+
+.info {
+    background-color: rgba(255, 251, 238, 0.6);
 }
