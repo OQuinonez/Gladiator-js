@@ -109,17 +109,15 @@ function changeTurn() {
     }
 }
 // Starts both players like new with both at 100 health and 0 rage
-function reload(player, other) {
-    able = [];
-    if (player.health < 0 || other.health < 0) {
-        able.push(
-            "<button id='restart' class='btn btn-moves' onclick='document.location.reload()'>Restart</button>"
-        );
-    } else {
-        return able;
-    }
-    able.join('');
-}
+// function reload(player, other) {
+//     able = [];
+//     if (player.health < 0 || other.health < 0) {
+//         able.push(
+//             "<div><button id='restart' class='btn btn-moves' onclick='document.location.reload()'>Restart</button></div>"
+//         );
+//     }
+//     return able.join('');
+// }
 
 // Makes the buttons do what they are suppose to do
 function attatchHandlers() {
@@ -161,6 +159,12 @@ function viewableButtons(player, other) {
             "<button type='button' class='btn btn-moves' id='rage'>Increase Rage</button> "
         );
     }
+    if (player.health < 0) {
+        able.push(
+            // "<button type='button' class='btn btn-moves' id='attack'>Attack</button>"
+            "<button id='restart' class='btn btn-moves' onclick='document.location.reload()'>Restart</button>"
+        );
+    }
     if (player.rage >= 10 && player.health > 0) {
         able.push(
             "<button type='button' class='btn btn-moves' id='heal'>Heal</button>"
@@ -169,6 +173,11 @@ function viewableButtons(player, other) {
     if (player.rage > 40 && player.health > 0) {
         able.push(
             "<button type='button' class='btn btn-moves' id='hadukening'>Haduken</button>"
+        );
+    }
+    if (player.health <= 0) {
+        able.push(
+            "<button id='restart' class='btn btn-moves' onclick='document.location.reload()'>Restart</button>"
         );
     }
     return able.join('');
