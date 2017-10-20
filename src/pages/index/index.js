@@ -190,10 +190,8 @@ function buttonView() {
         '<div class="damage">',
         STATE.points,
         '</div>',
-        '<div class="col-lg-6">',
         '<div class="btns">',
         viewableButtons(combater()),
-        '</div>',
         '</div>'
         // "<div><button type='button' class='btn btn-moves' id='restart'>Restart</button></div>"
     ].join('');
@@ -220,7 +218,11 @@ function gladiatorView(player) {
 // Draws everything being used in the html page
 function draw() {
     appRoot.html(
-        gladiatorView(player1) + gladiatorView(player2) + buttonView()
+        '<div class="row">' +
+            gladiatorView(player1) +
+            gladiatorView(player2) +
+            '</div>' +
+            buttonView()
     );
     attatchHandlers();
 }
